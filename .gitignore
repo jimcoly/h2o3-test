@@ -1,0 +1,10 @@
+.project
+.classpath
+.settings/
+**/test-output/
+*.db
+target
+.idea
+*.iml
+.vscode
+smalldata/
