@@ -41,16 +41,16 @@ public class OGETest extends TestUtil {
 
 		int colNum = newData.length;
 
-		// newData ²»º¬ÓĞYµÄÖµ
+		// newData ä¸å«æœ‰Yçš„å€¼
 
-		// TODO Ô¼¶¨Ä£ĞÍ´æ·ÅÂ·¾¶
+		// TODO çº¦å®šæ¨¡å‹å­˜æ”¾è·¯å¾„
 		String modelPath = "src/test/resources/model/ecg_discord.bin";
 		try {
-			// µÚ1²½£º»ñÈ¡Ä£ĞÍ
+			// ç¬¬1æ­¥ï¼šè·å–æ¨¡å‹
 			Model<?, ?, ?> model = Model.importBinaryModel(modelPath);
-			// µÚ2²½£ºÇóY0
+			// ç¬¬2æ­¥ï¼šæ±‚Y0
 			// double y0 = model.score(newData);
-			// TODO ´¦Àíy0»áµÈÓÚÁã
+			// TODO å¤„ç†y0ä¼šç­‰äºé›¶
 			Vec[] y0Vecs = new Vec[colNum];
 			Key<Vec>[] keys2 = Vec.VectorGroup.VG_LEN1.addVecs(colNum);
 			for (int r = 0; r < colNum; r++) {
@@ -65,7 +65,7 @@ public class OGETest extends TestUtil {
 			double y0 = y0Vec.at(0);
 			System.out.println(y0);
 
-			// µÚ3²½£ºÇóÓ°ÏìÁ¿
+			// ç¬¬3æ­¥ï¼šæ±‚å½±å“é‡
 			double effect = sets.getEffect();
 
 			Vec[] efdata = new Vec[colNum];
@@ -89,11 +89,11 @@ public class OGETest extends TestUtil {
 				System.out.println("y" + i + ":" + yn + " - " + effectY[i]);
 			}
 
-			// µÚ4²½£ºÇó×îÓÅÖµ
-			// µÚ4.1²½£ºÉú³ÉÑù±¾Êı¾İ
-			// TODO Éú³ÉÑù±¾Êı¾İ
+			// ç¬¬4æ­¥ï¼šæ±‚æœ€ä¼˜å€¼
+			// ç¬¬4.1æ­¥ï¼šç”Ÿæˆæ ·æœ¬æ•°æ®
+			// TODO ç”Ÿæˆæ ·æœ¬æ•°æ®
 			Frame optFrame = null;
-			// µÚ4.2²½£º¶ÔÑù±¾Êı¾İ½øĞĞ´ò·ÖÔ¤²â
+			// ç¬¬4.2æ­¥ï¼šå¯¹æ ·æœ¬æ•°æ®è¿›è¡Œæ‰“åˆ†é¢„æµ‹
 			Frame optScore = model.score(optFrame);
 			Vec ovec = optScore.vec(0);
 			int dataSize = new Long(ovec.length()).intValue();
