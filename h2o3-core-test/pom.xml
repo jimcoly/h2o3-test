@@ -5,6 +5,10 @@
 	<artifactId>h2o3-core-test</artifactId>
 	<version>3.20.0.8</version>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>ai.h2o</groupId>
