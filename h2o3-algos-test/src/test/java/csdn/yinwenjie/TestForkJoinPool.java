@@ -7,17 +7,17 @@ import java.util.concurrent.RecursiveTask;
 
 //https:// blog.csdn.net/yinwenjie/article/details/71524140?utm_source=copy
 /**
- * ÕâÊÇÒ»¸ö¼òµ¥µÄJoin/Fork¼ÆËã¹ı³Ì£¬½«1¡ª1001Êı×ÖÏà¼Ó
+ * è¿™æ˜¯ä¸€ä¸ªç®€å•çš„Join/Forkè®¡ç®—è¿‡ç¨‹ï¼Œå°†1â€”1001æ•°å­—ç›¸åŠ 
  */
 public class TestForkJoinPool {
 
 	private static final Integer MAX = 200;
 
 	static class MyForkJoinTask extends RecursiveTask<Integer> {
-		// ×ÓÈÎÎñ¿ªÊ¼¼ÆËãµÄÖµ
+		// å­ä»»åŠ¡å¼€å§‹è®¡ç®—çš„å€¼
 		private Integer startValue;
 
-		// ×ÓÈÎÎñ½áÊø¼ÆËãµÄÖµ
+		// å­ä»»åŠ¡ç»“æŸè®¡ç®—çš„å€¼
 		private Integer endValue;
 
 		public MyForkJoinTask(Integer startValue, Integer endValue) {
@@ -27,17 +27,17 @@ public class TestForkJoinPool {
 
 		@Override
 		protected Integer compute() {
-			// Èç¹ûÌõ¼ş³ÉÁ¢£¬ËµÃ÷Õâ¸öÈÎÎñËùĞèÒª¼ÆËãµÄÊıÖµ·ÖÎª×ã¹»Ğ¡ÁË
-			// ¿ÉÒÔÕıÊ½½øĞĞÀÛ¼Ó¼ÆËãÁË
+			// å¦‚æœæ¡ä»¶æˆç«‹ï¼Œè¯´æ˜è¿™ä¸ªä»»åŠ¡æ‰€éœ€è¦è®¡ç®—çš„æ•°å€¼åˆ†ä¸ºè¶³å¤Ÿå°äº†
+			// å¯ä»¥æ­£å¼è¿›è¡Œç´¯åŠ è®¡ç®—äº†
 			if (endValue - startValue < MAX) {
-				System.out.println("¿ªÊ¼¼ÆËãµÄ²¿·Ö£ºstartValue = " + startValue + ";endValue = " + endValue);
+				System.out.println("å¼€å§‹è®¡ç®—çš„éƒ¨åˆ†ï¼šstartValue = " + startValue + ";endValue = " + endValue);
 				Integer totalValue = 0;
 				for (int index = this.startValue; index <= this.endValue; index++) {
 					totalValue += index;
 				}
 				return totalValue;
 			}
-			// ·ñÔòÔÙ½øĞĞÈÎÎñ²ğ·Ö£¬²ğ·Ö³ÉÁ½¸öÈÎÎñ
+			// å¦åˆ™å†è¿›è¡Œä»»åŠ¡æ‹†åˆ†ï¼Œæ‹†åˆ†æˆä¸¤ä¸ªä»»åŠ¡
 			else {
 				MyForkJoinTask subTask1 = new MyForkJoinTask(startValue, (startValue + endValue) / 2);
 				subTask1.fork();
@@ -49,7 +49,7 @@ public class TestForkJoinPool {
 	}
 
 	public static void main(String[] args) {
-		// ÕâÊÇFork/Join¿ò¼ÜµÄÏß³Ì³Ø
+		// è¿™æ˜¯Fork/Joinæ¡†æ¶çš„çº¿ç¨‹æ± 
 		ForkJoinPool pool = new ForkJoinPool();
 		ForkJoinTask<Integer> taskFuture = pool.submit(new MyForkJoinTask(1, 1001));
 		try {

@@ -26,7 +26,7 @@ public class MyDeepLearningAutoEncoderTest extends TestUtil {
 	 * scan("ecg_discord_test.csv", sep=",") plot.ts(train) plot.ts(test)
 	 */
 	
-	// ECG discord ĞÄµç²»ºÍĞ³
+	// ECG discord å¿ƒç”µä¸å’Œè°
 	static final String PATH = "smalldata/anomaly/ecg_discord_train.csv"; // first 20 points
 	static final String PATH2 = "smalldata/anomaly/ecg_discord_test.csv"; // first 22 points
 
@@ -67,7 +67,7 @@ public class MyDeepLearningAutoEncoderTest extends TestUtil {
 			p._elastic_averaging = false;
 			DeepLearning dl = new DeepLearning(p);
 			DeepLearningModel mymodel = dl.trainModel().get();
-			// µ¼³öÄ£ĞÍ£¨¶ş½øÖÆÄ£Ê½£©
+			// å¯¼å‡ºæ¨¡å‹ï¼ˆäºŒè¿›åˆ¶æ¨¡å¼ï¼‰
 			try {
 				mymodel.exportBinaryModel("src/test/resources/model/ecg_discord.bin", true);
 			} catch (IOException e) {

@@ -1,6 +1,6 @@
 package csdn.yinwenjie;
 /**
- * Ê¹ÓÃFork/Join¿ò¼ÜµÄ¹é²¢ÅÅĞòËã·¨
+ * ä½¿ç”¨Fork/Joinæ¡†æ¶çš„å½’å¹¶æ’åºç®—æ³•
  * @author yinwenjie
  */
 
@@ -17,7 +17,7 @@ public class Merge2 {
 
 	private static int inits[] = new int[MAX];
 
-	// Í¬Ñù½øĞĞËæ»ú¶ÓÁĞ³õÊ¼»¯£¬ÕâÀï¾Í²»ÔÙ×¸ÊöÁË
+	// åŒæ ·è¿›è¡Œéšæœºé˜Ÿåˆ—åˆå§‹åŒ–ï¼Œè¿™é‡Œå°±ä¸å†èµ˜è¿°äº†
 	static {
 		Random r = new Random();
 		for (int index = 1; index <= MAX; index++) {
@@ -26,7 +26,7 @@ public class Merge2 {
 	}
 
 	public static void main(String[] args) throws Exception {
-		// ÕıÊ½¿ªÊ¼
+		// æ­£å¼å¼€å§‹
 		long beginTime = System.currentTimeMillis();
 		ForkJoinPool pool = new ForkJoinPool();
 		MyTask task = new MyTask(inits);
@@ -37,11 +37,11 @@ public class Merge2 {
 			e.printStackTrace(System.out);
 		}
 		long endTime = System.currentTimeMillis();
-		System.out.println("ºÄÊ±=" + (endTime - beginTime));
+		System.out.println("è€—æ—¶=" + (endTime - beginTime));
 	}
 
 	/**
-	 * µ¥¸öÅÅĞòµÄ×ÓÈÎÎñ
+	 * å•ä¸ªæ’åºçš„å­ä»»åŠ¡
 	 * 
 	 * @author yinwenjie
 	 */
@@ -61,23 +61,23 @@ public class Merge2 {
 		@Override
 		protected int[] compute() {
 			int sourceLen = source.length;
-			// Èç¹ûÌõ¼ş³ÉÁ¢£¬ËµÃ÷ÈÎÎñÖĞÒª½øĞĞÅÅĞòµÄ¼¯ºÏ»¹²»¹»Ğ¡
+			// å¦‚æœæ¡ä»¶æˆç«‹ï¼Œè¯´æ˜ä»»åŠ¡ä¸­è¦è¿›è¡Œæ’åºçš„é›†åˆè¿˜ä¸å¤Ÿå°
 			if (sourceLen > 2) {
 				int midIndex = sourceLen / 2;
-				// ²ğ·Ö³ÉÁ½¸ö×ÓÈÎÎñ
+				// æ‹†åˆ†æˆä¸¤ä¸ªå­ä»»åŠ¡
 				MyTask task1 = new MyTask(Arrays.copyOf(source, midIndex));
 				task1.fork();
 				MyTask task2 = new MyTask(Arrays.copyOfRange(source, midIndex, sourceLen));
 				task2.fork();
-				// ½«Á½¸öÓĞĞòµÄÊı×é£¬ºÏ²¢³ÉÒ»¸öÓĞĞòµÄÊı×é
+				// å°†ä¸¤ä¸ªæœ‰åºçš„æ•°ç»„ï¼Œåˆå¹¶æˆä¸€ä¸ªæœ‰åºçš„æ•°ç»„
 				int result1[] = task1.join();
 				int result2[] = task2.join();
 				int mer[] = joinInts(result1, result2);
 				return mer;
 			}
-			// ·ñÔòËµÃ÷¼¯ºÏÖĞÖ»ÓĞÒ»¸ö»òÕßÁ½¸öÔªËØ£¬¿ÉÒÔ½øĞĞÕâÁ½¸öÔªËØµÄ±È½ÏÅÅĞòÁË
+			// å¦åˆ™è¯´æ˜é›†åˆä¸­åªæœ‰ä¸€ä¸ªæˆ–è€…ä¸¤ä¸ªå…ƒç´ ï¼Œå¯ä»¥è¿›è¡Œè¿™ä¸¤ä¸ªå…ƒç´ çš„æ¯”è¾ƒæ’åºäº†
 			else {
-				// Èç¹ûÌõ¼ş³ÉÁ¢£¬ËµÃ÷Êı×éÖĞÖ»ÓĞÒ»¸öÔªËØ£¬»òÕßÊÇÊı×éÖĞµÄÔªËØ¶¼ÒÑ¾­ÅÅÁĞºÃÎ»ÖÃÁË
+				// å¦‚æœæ¡ä»¶æˆç«‹ï¼Œè¯´æ˜æ•°ç»„ä¸­åªæœ‰ä¸€ä¸ªå…ƒç´ ï¼Œæˆ–è€…æ˜¯æ•°ç»„ä¸­çš„å…ƒç´ éƒ½å·²ç»æ’åˆ—å¥½ä½ç½®äº†
 				if (sourceLen == 1 || source[0] <= source[1]) {
 					return source;
 				} else {
@@ -95,16 +95,16 @@ public class Merge2 {
 			int array2Len = array2.length;
 			int destLen = destInts.length;
 
-			// Ö»ĞèÒªÒÔĞÂµÄ¼¯ºÏdestIntsµÄ³¤¶ÈÎª±ê×¼£¬±éÀúÒ»´Î¼´¿É
+			// åªéœ€è¦ä»¥æ–°çš„é›†åˆdestIntsçš„é•¿åº¦ä¸ºæ ‡å‡†ï¼Œéå†ä¸€æ¬¡å³å¯
 			for (int index = 0, array1Index = 0, array2Index = 0; index < destLen; index++) {
 				int value1 = array1Index >= array1Len ? Integer.MAX_VALUE : array1[array1Index];
 				int value2 = array2Index >= array2Len ? Integer.MAX_VALUE : array2[array2Index];
-				// Èç¹ûÌõ¼ş³ÉÁ¢£¬ËµÃ÷Ó¦¸ÃÈ¡Êı×éarray1ÖĞµÄÖµ
+				// å¦‚æœæ¡ä»¶æˆç«‹ï¼Œè¯´æ˜åº”è¯¥å–æ•°ç»„array1ä¸­çš„å€¼
 				if (value1 < value2) {
 					array1Index++;
 					destInts[index] = value1;
 				}
-				// ·ñÔòÈ¡Êı×éarray2ÖĞµÄÖµ
+				// å¦åˆ™å–æ•°ç»„array2ä¸­çš„å€¼
 				else {
 					array2Index++;
 					destInts[index] = value2;

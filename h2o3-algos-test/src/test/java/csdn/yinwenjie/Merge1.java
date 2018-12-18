@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * ¹é²¢ÅÅĞò
+ * å½’å¹¶æ’åº
  * 
  * @author yinwenjie
  */
@@ -14,8 +14,8 @@ public class Merge1 {
 
 	private static int inits[] = new int[MAX];
 
-	// ÕâÊÇÎªÁËÉú³ÉÒ»¸öÊıÁ¿ÎªMAXµÄËæ»úÕûÊı¼¯ºÏ£¬×¼±¸¼ÆËãÊı¾İ
-	// ºÍËã·¨±¾Éí²¢Ã»ÓĞÊ²Ã´¹ØÏµ
+	// è¿™æ˜¯ä¸ºäº†ç”Ÿæˆä¸€ä¸ªæ•°é‡ä¸ºMAXçš„éšæœºæ•´æ•°é›†åˆï¼Œå‡†å¤‡è®¡ç®—æ•°æ®
+	// å’Œç®—æ³•æœ¬èº«å¹¶æ²¡æœ‰ä»€ä¹ˆå…³ç³»
 	static {
 		Random r = new Random();
 		for (int index = 1; index <= MAX; index++) {
@@ -27,24 +27,24 @@ public class Merge1 {
 		long beginTime = System.currentTimeMillis();
 		int results[] = forkits(inits);
 		long endTime = System.currentTimeMillis();
-		// Èç¹û²ÎÓëÅÅĞòµÄÊı¾İ·Ç³£ÅÓ´ó£¬¼ÇµÃ°ÑÕâÖÖ´òÓ¡·½Ê½È¥µô
-		System.out.println("ºÄÊ±=" + (endTime - beginTime) + " | " + Arrays.toString(results));
+		// å¦‚æœå‚ä¸æ’åºçš„æ•°æ®éå¸¸åºå¤§ï¼Œè®°å¾—æŠŠè¿™ç§æ‰“å°æ–¹å¼å»æ‰
+		System.out.println("è€—æ—¶=" + (endTime - beginTime) + " | " + Arrays.toString(results));
 	}
 
-	// ²ğ·Ö³É½ÏĞ¡µÄÔªËØ»òÕß½øĞĞ×ã¹»Ğ¡µÄÔªËØ¼¯ºÏµÄÅÅĞò
+	// æ‹†åˆ†æˆè¾ƒå°çš„å…ƒç´ æˆ–è€…è¿›è¡Œè¶³å¤Ÿå°çš„å…ƒç´ é›†åˆçš„æ’åº
 	private static int[] forkits(int source[]) {
 		int sourceLen = source.length;
 		if (sourceLen > 2) {
 			int midIndex = sourceLen / 2;
 			int result1[] = forkits(Arrays.copyOf(source, midIndex));
 			int result2[] = forkits(Arrays.copyOfRange(source, midIndex, sourceLen));
-			// ½«Á½¸öÓĞĞòµÄÊı×é£¬ºÏ²¢³ÉÒ»¸öÓĞĞòµÄÊı×é
+			// å°†ä¸¤ä¸ªæœ‰åºçš„æ•°ç»„ï¼Œåˆå¹¶æˆä¸€ä¸ªæœ‰åºçš„æ•°ç»„
 			int mer[] = joinInts(result1, result2);
 			return mer;
 		}
-		// ·ñÔòËµÃ÷¼¯ºÏÖĞÖ»ÓĞÒ»¸ö»òÕßÁ½¸öÔªËØ£¬¿ÉÒÔ½øĞĞÕâÁ½¸öÔªËØµÄ±È½ÏÅÅĞòÁË
+		// å¦åˆ™è¯´æ˜é›†åˆä¸­åªæœ‰ä¸€ä¸ªæˆ–è€…ä¸¤ä¸ªå…ƒç´ ï¼Œå¯ä»¥è¿›è¡Œè¿™ä¸¤ä¸ªå…ƒç´ çš„æ¯”è¾ƒæ’åºäº†
 		else {
-			// Èç¹ûÌõ¼ş³ÉÁ¢£¬ËµÃ÷Êı×éÖĞÖ»ÓĞÒ»¸öÔªËØ£¬»òÕßÊÇÊı×éÖĞµÄÔªËØ¶¼ÒÑ¾­ÅÅÁĞºÃÎ»ÖÃÁË
+			// å¦‚æœæ¡ä»¶æˆç«‹ï¼Œè¯´æ˜æ•°ç»„ä¸­åªæœ‰ä¸€ä¸ªå…ƒç´ ï¼Œæˆ–è€…æ˜¯æ•°ç»„ä¸­çš„å…ƒç´ éƒ½å·²ç»æ’åˆ—å¥½ä½ç½®äº†
 			if (sourceLen == 1 || source[0] <= source[1]) {
 				return source;
 			} else {
@@ -57,7 +57,7 @@ public class Merge1 {
 	}
 
 	/**
-	 * Õâ¸ö·½·¨ÓÃÓÚºÏ²¢Á½¸öÓĞĞò¼¯ºÏ
+	 * è¿™ä¸ªæ–¹æ³•ç”¨äºåˆå¹¶ä¸¤ä¸ªæœ‰åºé›†åˆ
 	 * 
 	 * @param array1
 	 * @param array2
@@ -68,16 +68,16 @@ public class Merge1 {
 		int array2Len = array2.length;
 		int destLen = destInts.length;
 
-		// Ö»ĞèÒªÒÔĞÂµÄ¼¯ºÏdestIntsµÄ³¤¶ÈÎª±ê×¼£¬±éÀúÒ»´Î¼´¿É
+		// åªéœ€è¦ä»¥æ–°çš„é›†åˆdestIntsçš„é•¿åº¦ä¸ºæ ‡å‡†ï¼Œéå†ä¸€æ¬¡å³å¯
 		for (int index = 0, array1Index = 0, array2Index = 0; index < destLen; index++) {
 			int value1 = array1Index >= array1Len ? Integer.MAX_VALUE : array1[array1Index];
 			int value2 = array2Index >= array2Len ? Integer.MAX_VALUE : array2[array2Index];
-			// Èç¹ûÌõ¼ş³ÉÁ¢£¬ËµÃ÷Ó¦¸ÃÈ¡Êı×éarray1ÖĞµÄÖµ
+			// å¦‚æœæ¡ä»¶æˆç«‹ï¼Œè¯´æ˜åº”è¯¥å–æ•°ç»„array1ä¸­çš„å€¼
 			if (value1 < value2) {
 				array1Index++;
 				destInts[index] = value1;
 			}
-			// ·ñÔòÈ¡Êı×éarray2ÖĞµÄÖµ
+			// å¦åˆ™å–æ•°ç»„array2ä¸­çš„å€¼
 			else {
 				array2Index++;
 				destInts[index] = value2;
